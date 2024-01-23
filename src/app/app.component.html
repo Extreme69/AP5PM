@@ -1,0 +1,32 @@
+<ion-app>
+  <!-- Menu content -->
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+        <ion-buttons slot="end">
+          <ion-button [routerLink]="'/settings'" (click)="closeMenu()">
+            <ion-icon name="settings-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-item [routerLink]="'/animes'" (click)="closeMenu()">
+          <ion-icon name="play-outline" slot="start"></ion-icon>
+          <ion-label>Animes</ion-label>
+        </ion-item>
+
+        <ion-item [routerLink]="'/favorites'" (click)="closeMenu()">
+          <ion-icon name="eye-outline" slot="start"></ion-icon>
+          <ion-label>Watched</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Main content -->
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-app>

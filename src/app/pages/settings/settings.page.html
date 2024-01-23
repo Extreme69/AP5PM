@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <!-- A toggle to switch theme -->
+  <ion-item [class]="isDarkMode ? 'dark-mode-toggle' : ''">
+    <ion-toggle (ionChange)="toggleTheme()">Dark Mode</ion-toggle>
+  </ion-item>  
+
+  <!-- A button to remove favorites -->
+  <ion-button class="ion-padding" color="tertiary" expand="full" (click)="removeFavorites()">
+    <ion-icon name="trash-outline"></ion-icon>
+    Remove all watched animes!
+  </ion-button>
+
+</ion-content>

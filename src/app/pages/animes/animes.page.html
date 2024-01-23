@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="custom-title"> {{ searchTerm ? 'Searched for: "' + searchTerm + '"' : 'Trending Animes'
+      }}</ion-title>
+    <ion-searchbar class="custom-searchbar" [debounce]="1000" (ionInput)="handleSearch($event)"></ion-searchbar>
+
+    <!-- "Random Anime" button -->
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="[randomAnimeId]" size="large">
+        <ion-icon name="shuffle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let anime of animes" [routerLink]="[anime.mal_id]">
+      <ion-avatar slot="start">
+        <img [src]="anime.images.jpg.small_image_url">
+      </ion-avatar>
+
+      <ion-label>
+        {{ getAnimeTitle(anime) }}
+        <p>{{ anime.year }}</p>
+      </ion-label>
+
+      <ion-badge slot="end" [ngStyle]="{ 'background-color': getScoreColor(anime.score) }">
+        {{ anime.score !== null ? anime.score : 'N/A' }}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <div style="margin-bottom: 20px;"></div>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles"
+      loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

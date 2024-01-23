@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ anime?.data?.title }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/animes"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleFavorite()">
+        <ion-icon [name]="isFavorite() ? 'eye' : 'eye-outline'" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-content-center">
+  <ion-card *ngIf="anime">
+    <div class="image-container">
+      <img [src]="anime.data.images.jpg.image_url" />
+    </div>
+
+    <ion-card-header>
+      <ion-card-title>
+        {{ anime.data.title }}
+        <ng-container *ngIf="anime?.data?.score !== undefined && anime?.data?.score !== null">
+          <ion-icon name="star" color="danger"></ion-icon> {{ anime?.data?.score }}
+        </ng-container>
+      </ion-card-title>
+
+      <!-- Conditionally show the studios only if present -->
+      <ion-text *ngIf="anime.data.studios && anime.data.studios.length > 0">
+        Studio:
+        <span *ngFor="let g of anime.data.studios; let isLast = last">
+          {{ g.name }} {{ !isLast ? ',' : '' }}
+        </span>
+      </ion-text>
+
+      <!-- Conditionally show the card subtitle only if present -->
+      <ion-card-subtitle *ngIf="anime.data.status">
+        {{ anime.data.status }}
+      </ion-card-subtitle>
+
+      <!-- Conditionally show the ion-text only if genres are present -->
+      <ion-text *ngIf="anime.data.genres && anime.data.genres.length > 0" color="tertiary">
+        <span *ngFor="let g of anime.data.genres; let isLast = last">
+          {{ g.name }} {{ !isLast ? ',' : '' }}
+        </span>
+      </ion-text>
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- Button to toggle the visibility of the synopsis section -->
+      <ion-button color="secondary" *ngIf="anime.data.synopsis" (click)="toggleSynopsis()">
+        <ion-label>
+          Synopsis
+        </ion-label>
+        <ion-icon [name]="showSynopsis ? 'caret-down-outline' : 'caret-forward-outline'" slot="end"></ion-icon>
+      </ion-button>
+
+      <!-- Button to toggle the visibility of the background section -->
+      <ion-button color="secondary" *ngIf="anime.data.background" (click)="toggleBackground()">
+        <ion-label>
+          Background
+        </ion-label>
+        <ion-icon [name]="showBackground ? 'caret-down-outline' : 'caret-forward-outline'" slot="end"></ion-icon>
+      </ion-button>
+
+      <!-- Content of the synopsis section -->
+      <ion-item *ngIf="showSynopsis && anime.data.synopsis">
+        <ion-text>{{ anime.data.synopsis }}</ion-text>
+      </ion-item>
+
+      <!-- Content of the background section -->
+      <ion-item *ngIf="showBackground && anime.data.background">
+        <ion-text>{{ anime.data.background }}</ion-text>
+      </ion-item>
+
+
+      <!-- Conditionally show the year only if present -->
+      <ion-item lines="none" *ngIf="anime.data.year !== undefined && anime.data.year !== null">
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-label>{{ anime.data.year }}</ion-label>
+      </ion-item>
+
+      <!-- Conditionally show the episodes only if present -->
+      <ion-item lines="none" *ngIf="anime.data.episodes !== undefined && anime.data.episodes !== null">
+        <ion-icon name="videocam-outline" slot="start"></ion-icon>
+        <ion-label>{{ anime.data.episodes }} episodes, {{ anime.data.duration }}</ion-label>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-button expand="full" (click)="openHomepage()" *ngIf="anime?.data?.url">
+    <ion-icon name="open-outline" slot="start"></ion-icon>
+    Open MyAnimeList
+  </ion-button>
+</ion-footer>

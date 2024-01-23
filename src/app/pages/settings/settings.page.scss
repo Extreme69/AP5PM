@@ -1,0 +1,15 @@
+.fade-out-toast {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.centered-toast-message {
+    text-align: center;
+    width: 100%;
+}
+
+.dark-mode-toggle {
+    ion-toggle {
+        float: right;
+    }
+}
