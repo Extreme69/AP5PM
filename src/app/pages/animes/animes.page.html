@@ -8,12 +8,11 @@
     <ion-searchbar class="custom-searchbar" [debounce]="1000" (ionInput)="handleSearch($event)"></ion-searchbar>
 
     <!-- "Random Anime" button -->
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" class="shuffle-button">
       <ion-button [routerLink]="[randomAnimeId]" size="large">
         <ion-icon name="shuffle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    
   </ion-toolbar>
 </ion-header>
 

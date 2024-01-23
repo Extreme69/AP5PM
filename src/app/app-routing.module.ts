@@ -16,10 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/anime-details/anime-details.module').then( m => m.AnimeDetailsPageModule)
   },
   {
-    path: 'search',
-    loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
-  },
-  {
     path: 'favorites',
     loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
   },

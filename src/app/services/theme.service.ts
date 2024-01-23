@@ -19,7 +19,6 @@ export class ThemeService {
    * @param {string} theme - The theme to set ('light' or 'dark').
    */
   setTheme(theme: string): void {
-    // Uncomment the line below to log theme changes for debugging purposes.
     // console.log(`Setting theme to ${theme}`);
     
     localStorage.setItem(this.THEME_KEY, theme);

@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'AnimeDb',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'http'
   }
 };
 
